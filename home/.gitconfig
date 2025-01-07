@@ -1,0 +1,134 @@
+[gpg]
+	format = ssh
+  program = ssh
+
+[includeIf "gitdir:~/devel/SAP/"]
+  path = ~/.gitconfig-SAP
+
+[includeIf "gitdir:~/devel/openstack/"]
+  path = ~/.gitconfig-SAP
+
+[includeIf "gitdir:~/devel/mine/"]
+    path = ~/.gitconfig-MINE
+
+[includeIf "gitdir:/Users/i530566/.dotfiles"]
+  path = ~/.gitconfig-MINE
+
+[core]
+    editor = vim -f
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile=/home/waboring/.gitignore
+    pager = delta
+
+[alias]
+	st = status -s
+	co = checkout
+	ci = commit -a
+	br = branch
+	praise = blame
+	lg = log -p
+	lol = log --graph --decorate  --abbrev-commit
+	lola = log --graph --decorate --abbrev-commit --all
+	ls = ls-files
+
+	#show files ignored by git
+	ign = ls-files -o -i --exclude-standard
+
+[apply]
+	whitespace = strip
+
+[format]
+    # Make 'git log' default to this format
+    pretty = color
+
+[pretty]
+    color = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset
+
+[color]
+	ui = true
+  wtf = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[diff]
+	color = auto
+    rename = copy
+    colorMoved = default
+    #external = difft
+
+[status]
+	color = auto
+
+[pager]
+	color = true
+	branch = false
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[color "diff"]
+	whitespace = red reverse
+
+
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 0x0+0+0
+	history-view-vpane-position = 470
+	file-view-vpane-position = 1078
+	main-window-view = HistoryView
+[svn]
+	rmdir = true
+
+[gitreview]
+	username = walter-boring
+
+[web]
+    browser = chromium-browser
+
+[github]
+	user = hemna
+  email = waboring@hemna.com
+  signingkey=~/.ssh/id_rsa.pub
+
+[credential]
+	helper = osxkeychain
+[rerere]
+	enabled = true
+[branch]
+	autosetuprebase = always
+[page]
+	branch = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+    required = true
+
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended
+    line-numbers = true
+    side-by-side = true
+    inspect-raw-lines = false
+
+[interactive]
+    #diffFilter = delta --color-only
+[init]
+	templateDir = /Users/i530566/.git-template
+[user]
+	signingkey = /Users/I530566/.ssh/id_rsa.pub

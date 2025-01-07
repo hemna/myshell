@@ -1,0 +1,73 @@
+#!/bin/bash
+#
+## This file contains common aliases for both zsh and bashrc
+
+# Functions
+alias zshrc="vim ~/.zshrc && source ~/.zshrc"
+alias psg="ps aux | grep -v grep |grep -i -e VSZ -e"
+alias vssh="vagrant ssh"
+# run git pull origin master in every subdirectory from .
+alias gp="find . -name .git -type d -execdir git pull --all --tags -v ';'"
+alias p="python"
+
+alias mvn='mvn -P \!create-iso,\!create-installation'
+alias bashrc="vim ~/.bashrc && source ~/.bashrc"
+alias vssh="vagrant ssh"
+#alias cd=z
+alias cat=bat
+alias cd..="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
+
+alias moer="more"
+#alias install="sudo apt-get install"
+alias archey="pyarchey"
+alias xdg="xdg-open"
+alias google="chromium-browser http://www.gogle.com"
+alias wx="curl wttr.in/Appomattox"
+
+# HOME
+alias homedev="ssh -Y waboring@home.hemna.com"
+alias dev="ssh -Y waboring@192.168.1.44"
+
+# HomeLab
+alias hpdev="ssh -Y waboring@192.168.1.5"
+alias hpdev2="ssh -Y waboring@192.168.1.22"
+
+#alias devceph="ssh l3@10.84.56.6"
+alias devceph="ssh waboring@10.84.56.6"
+
+# OSC builds
+alias isc="osc -A ibs"
+alias oscb="osc build --ccache"
+alias oscsd="osc service localrun download_files"
+
+cdl() { cd "$@" && ls -lhFA; }
+
+alias ls='lsd'
+
+if [ "$OS" = "mac" ]; then
+  alias ll='ls -lhFA'
+else
+  alias ll='ls -lhFA --color=auto'
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
+fi
+
+WORK_VAG_NET="192.168.121.0/24"
+WORK_VAG_ARD_NET="192.168.245.0/24"
+WORK_DE_NET="10.160.224.0/24"
+HOME_NET="192.168.0.0/16"
+
+alias hometun="sshuttle -e 'ssh -Y' -r waboring@home.hemna.com ${HOME_NET}"
+alias hptun="sshuttle -r waboring@192.168.1.5 192.168.122.0/24 192.168.121.0/24 192.168.16.0/24"
+
+color_ssh () {
+    ssh $*
+    echo -e "\033]6;1;bg;*;default\a"
+}
+
+#alias ssh="color_ssh"
+alias mp="multipass"
+alias vim=lvim
+alias vi=lvim

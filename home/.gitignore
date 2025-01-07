@@ -1,0 +1,24 @@
+src
+jo
+
+cache/*
+
+# VIM related shit
+.vim/.netrwhist
+.vim/bundle/vim-matchup/
+nvim
+
+# Fish shell related shit
+
+fish/fish_variables
+fish/fishfile
+fish/conf.d/done.fish
+fish/conf.d/pisces_key_bindings.fish
+fish/conf.d/z.fish
+fish/functions/__z*
+fish/functions/_pisces*
+
+# Stuff that's installed later
+fish/conf.d/fish_command_timer.fish
+fish/functions/fish_command_timer.fish
+fish/functions/fish_prompt.fish
