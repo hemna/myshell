@@ -8,6 +8,7 @@ bin_packages = {
         "lnav",
         "lsb-release",
         "python3-autopep8",
+        "python3-venv",
         "vim-autopep8",
         "httpie",
         "bat",
