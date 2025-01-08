@@ -35,6 +35,12 @@ def install_debian_binaries(cs):
         )
         
         # Now install all shell packages
+        for entry in host.data.script_packages["debian"]:
+            server.shell(
+                name=entry['name'],
+                commands=entry['commands'],
+                _sudo=entry.get('_sudo', False)
+            )
         for entry in host.data.script_packages["all"]:
             server.shell(
                 name=entry['name'],

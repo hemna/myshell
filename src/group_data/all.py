@@ -52,7 +52,7 @@ script_packages = {
             '_sudo': True,
         },
         {
-            'name': 'LunarVim',
+            'name': 'Install LunarVim',
             'commands': ['LV_BRANCH="release-1.4/neovim-0.9" curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh | bash'],
             '_sudo': True,
         }
