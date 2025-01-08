@@ -103,11 +103,17 @@ def install_binaries(cs):
 
 # Install any python packages
 def install_python_packages(cs):
+    pip.venv(
+        name="Create virtualenv for user",
+        path="/home/waboring/.venv",
+        present=True,
+    )
     pip.packages(
         name="Install required python packages",
         packages=host.data.python_packages,
         present=True,
         latest=True,
+        virtualenv="/home/waboring/.venv"
     )
 
 
