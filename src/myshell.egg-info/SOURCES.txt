@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/deploy.py
+src/group_data/all.py
+src/myshell.egg-info/PKG-INFO
+src/myshell.egg-info/SOURCES.txt
+src/myshell.egg-info/dependency_links.txt
+src/myshell.egg-info/requires.txt
+src/myshell.egg-info/top_level.txt
+src/utils/__init__.py
