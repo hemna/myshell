@@ -12,6 +12,8 @@ bin_packages = {
         "httpie",
         "bat",
         "zsh",
+        "lsd",
+        "neovim",
     ],
     "macos" : [
         "coreutils",
@@ -24,24 +26,18 @@ bin_packages = {
 
 # snap is basically debian only
 snap_packages = [
-    {
-        'name': "Install lsd",
-        'packages': "lsd",
-        '_sudo': True,
-        'type': 'snap',
-    },
 ]
 
 script_packages = {
     "debian": [
-        {
-            'name': "Install neovim",
-            'commands': ['curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz',
-                         'rm -rf /opt/nvim',
-                         'tar -C /opt -xzf nvim-linux64.tar.gz'],
-            '_sudo': True,
-            
-        },
+        # {
+        #     'name': "Install neovim",
+        #     'commands': ['curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz',
+        #                  'rm -rf /opt/nvim',
+        #                  'tar -C /opt -xzf nvim-linux64.tar.gz',
+        #                  'ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin'],
+        #     '_sudo': True,
+        # },
     ],
     "macos": [
     ],

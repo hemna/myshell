@@ -26,6 +26,10 @@ def install_debian_binaries(cs):
                 cache_time=3600,
                 _sudo=True,
             )
+        apt.ppa(
+            name="Install Neovim PPA",
+            src="ppa:neovim-ppa/unstable",
+        )
         apt.upgrade(name="Update apt packages", _sudo=True)
         apt.packages(
             name="Install required packages",
