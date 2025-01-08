@@ -19,15 +19,13 @@ cs.print(f"User = {host.data.get('ssh_user')}")
 cs.print(f"OS VERSION = {host.get_fact(server_facts.Os)}")
 
 
-
-# First install binary packages
-def install_binaries():
-    if host.get_fact(server_facts.LinuxName) in ["Debian", "Ubuntu"]:
+def install_debian_binaries(cs):
+    with cs.status("Installing Debian Binaries") as status:
         apt.update(
-            name="Update apt repositories",
-            cache_time=3600,
-            _sudo=True,
-        )
+                name="Update apt repositories",
+                cache_time=3600,
+                _sudo=True,
+            )
         apt.upgrade(name="Update apt packages", _sudo=True)
         apt.packages(
             name="Install required packages",
@@ -51,9 +49,10 @@ def install_binaries():
                 packages=entry['packages'],
                 _sudo=entry.get('_sudo', False)
             )
-            
-            
-    elif host.get_fact(server_facts.Os) in ["Darwin"]:
+
+
+def install_macos_binaries(cs):
+    with cs.status("Install MacOS Binaries") as status:
         brew.update(name="Update brew")
         brew.upgrade(name="Upgrade brew")
         brew.cask_upgrade(name="Upgrade brew casks")
@@ -78,12 +77,19 @@ def install_binaries():
             upgrade=True,
             update=True,
             present=True,
-        )
+        ) 
 
 
+# First install binary packages
+def install_binaries(cs):
+    if host.get_fact(server_facts.LinuxName) in ["Debian", "Ubuntu"]:
+        install_debian_binaries(cs)
+    elif host.get_fact(server_facts.Os) in ["Darwin"]:
+        install_macos_binaries(cs)
+        
 
 # Install any python packages
-def install_python_packages():
+def install_python_packages(cs):
     pip.packages(
         name="Install required python packages",
         packages=host.data.python_packages,
@@ -92,7 +98,7 @@ def install_python_packages():
     )
 
 
-def install_dotfiles():
+def install_dotfiles(cs):
     git_clone_or_pull(
         src="https://github.com/robbyrussell/oh-my-zsh.git",
         dest=f"{home}/.oh-my-zsh",
@@ -138,9 +144,6 @@ def install_dotfiles():
 
 
 
-
-
-
-install_binaries()
-install_python_packages()
-install_dotfiles()
+install_binaries(cs)
+install_python_packages(cs)
+install_dotfiles(cs)
