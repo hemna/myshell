@@ -1,7 +1,6 @@
 from pyinfra import host, logger
-from pyinfra.operations import apt, server, git, pip, brew, snap
+from pyinfra.operations import apt, server, git, pip, brew, snap, files
 from pyinfra.facts import server as server_facts
-from pyinfra import files
 
 from rich.console import Console
 
