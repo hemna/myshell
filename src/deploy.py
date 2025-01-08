@@ -22,13 +22,14 @@ def install_debian_binaries(cs):
     with cs.status("Installing Debian Binaries") as status:
         logger.info(f"Packages to install {host.data.bin_packages['debian']}")
         apt.update(
-                name="Update apt repositories",
-                cache_time=3600,
-                _sudo=True,
-            )
+            name="Update apt repositories",
+            cache_time=3600,
+            _sudo=True,
+        )
         apt.ppa(
             name="Install Neovim PPA",
             src="ppa:neovim-ppa/unstable",
+            _sudo=True,
         )
         apt.upgrade(name="Update apt packages", _sudo=True)
         apt.packages(
