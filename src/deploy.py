@@ -35,12 +35,14 @@ def install_debian_binaries(cs):
         )
         
         # Now install all shell packages
+        logger.info(f"Installing debian script packages {len(host.data.script_packages['debian'])}")
         for entry in host.data.script_packages["debian"]:
             server.shell(
                 name=entry['name'],
                 commands=entry['commands'],
                 _sudo=entry.get('_sudo', False)
             )
+        logger.info(f"Installing common script packages {len(host.data.script_packages['all'])}")
         for entry in host.data.script_packages["all"]:
             server.shell(
                 name=entry['name'],
