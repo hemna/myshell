@@ -162,8 +162,8 @@ def install_dotfiles(cs):
     
     files.link(
         name="Symlink lvim setup",
-        path="home/.config/lvim",
-        target=f"{home}/.config/lvim"
+        path=f"{home}/.config/lvim",
+        target="home/.config/lvim",
     )
 
 
