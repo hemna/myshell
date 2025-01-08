@@ -8,10 +8,9 @@ from utils import git_clone_or_pull, link
 
 cs = Console()
 
-
 # Define some state - this operation will do nothing on subsequent runs
 user = host.get_fact(server_facts.User)
-#cs.print_json(data=user)
+cs.print_json(data=user)
 home = host.get_fact(server_facts.Home)
 #cs.print_json(data=home)
 #cs.print(host.data.bin_packages)
@@ -21,6 +20,7 @@ cs.print(f"OS VERSION = {host.get_fact(server_facts.Os)}")
 
 def install_debian_binaries(cs):
     with cs.status("Installing Debian Binaries") as status:
+        cs.print("Packages to install {host.data.bin_packages['debian']}")
         apt.update(
                 name="Update apt repositories",
                 cache_time=3600,
