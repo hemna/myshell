@@ -1,4 +1,4 @@
-from pyinfra import host
+from pyinfra import host, logger
 from pyinfra.operations import apt, server, git, pip, brew, snap
 from pyinfra.facts import server as server_facts
 
@@ -10,17 +10,17 @@ cs = Console()
 
 # Define some state - this operation will do nothing on subsequent runs
 user = host.get_fact(server_facts.User)
-cs.print_json(data=user)
+logger.info(f"user = {user}")
 home = host.get_fact(server_facts.Home)
 #cs.print_json(data=home)
 #cs.print(host.data.bin_packages)
-cs.print(f"User = {host.data.get('ssh_user')}")
-cs.print(f"OS VERSION = {host.get_fact(server_facts.Os)}")
+logger.info(f"User = {host.data.get('ssh_user')}")
+logger.info(f"OS VERSION = {host.get_fact(server_facts.Os)}")
 
 
 def install_debian_binaries(cs):
     with cs.status("Installing Debian Binaries") as status:
-        cs.print("Packages to install {host.data.bin_packages['debian']}")
+        logger.info(f"Packages to install {host.data.bin_packages['debian']}")
         apt.update(
                 name="Update apt repositories",
                 cache_time=3600,
