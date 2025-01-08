@@ -12,7 +12,6 @@ bin_packages = {
         "httpie",
         "bat",
         "zsh",
-        "neovim",
     ],
     "macos" : [
         "coreutils",
@@ -35,6 +34,14 @@ snap_packages = [
 
 script_packages = {
     "debian": [
+        {
+            'name': "Install neovim",
+            'commands': ['curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz',
+                         'rm -rf /opt/nvim',
+                         'tar -C /opt -xzf nvim-linux64.tar.gz'],
+            '_sudo': True,
+            
+        },
     ],
     "macos": [
     ],
