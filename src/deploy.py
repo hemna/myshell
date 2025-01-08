@@ -1,6 +1,7 @@
 from pyinfra import host, logger
 from pyinfra.operations import apt, server, git, pip, brew, snap
 from pyinfra.facts import server as server_facts
+from pyinfra import files
 
 from rich.console import Console
 
@@ -126,7 +127,6 @@ def install_dotfiles(cs):
         recursive_submodules=True,
     ) 
     
-    
     # Clone my dotfiles repo
     git.repo(
         name="Clone the Dotfiles repo",
@@ -159,6 +159,12 @@ def install_dotfiles(cs):
     server.shell(
         name="Setup dotfiles links",
         commands=[f"{home}/.dotfiles/link.sh"]
+    )
+    
+    files.link(
+        name="Symlink lvim setup",
+        path="home/.config/lvim",
+        target=f"{home}/.config/lvim"
     )
 
 
